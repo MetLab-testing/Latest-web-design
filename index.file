@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MetLab Testing and Analysis Services</title>
+<meta name="description" content="Mechanical, Metallurgical, Corrosion & Coating Testing — MetLab Qatar">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent:#0b5cff;
+  --accent-gradient:linear-gradient(135deg,#0b5cff,#0077ff);
+  --muted:#555;
+  --bg:#f7f8fa;
+  --card:#fff;
+  --shadow:0 8px 20px rgba(0,0,0,0.05);
+  --radius:14px;
+}
+
+/* === Global === */
+*{box-sizing:border-box;}
+body {
+  margin:0;
+  font-family:"Inter",system-ui,Segoe UI,Roboto,Arial;
+  background:var(--bg);
+  color:#222;
+  line-height:1.6;
+  scroll-behavior:smooth;
+}
+a{text-decoration:none;color:inherit;}
+h1,h2,h3{font-family:"Poppins",sans-serif;color:#111;}
+img{max-width:100%;height:auto;}
+
+/* === Sidebar === */
+.sidebar{
+  position:fixed;left:0;top:0;width:240px;height:100vh;
+  background:#101010;color:#fff;padding:24px;z-index:1000;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;
+}
+.sidebar .brand{text-align:center;width:100%;margin-bottom:20px;}
+.sidebar .logo{width:180px;margin-bottom:10px;}
+.sidebar .contact-info{font-size:14px;color:#ccc;line-height:1.6;}
+.sidebar .contact-info strong{color:#4da3ff;}
+
+/* === Header === */
+header{
+  position:fixed;top:0;left:240px;right:0;height:70px;background:#fff;
+  border-bottom:1px solid #e5e7eb;
+  display:flex;align-items:center;padding:0 40px;z-index:900;
+  box-shadow:0 1px 6px rgba(0,0,0,0.04);
+}
+.navlinks{display:flex;gap:24px;}
+.navlinks a{
+  font-weight:600;color:#555;padding:10px 16px;border-radius:8px;
+  transition:all .25s ease;
+}
+.navlinks a:hover{background:#f3f4f6;color:#000;}
+.navlinks .cta{
+  background:var(--accent-gradient);color:#fff;
+  box-shadow:0 4px 10px rgba(11,92,255,0.25);
+}
+.navlinks .cta:hover{transform:translateY(-1px);}
+
+/* === Main === */
+main{margin-left:240px;padding:110px 50px 50px;}
+
+/* === Hero === */
+.hero{margin-bottom:60px;animation:fadeInUp .6s ease;}
+.hero h1{font-size:36px;color:#0b5cff;margin-bottom:14px;}
+.hero p{max-width:800px;color:var(--muted);}
+.hero .cta{
+  margin-top:24px;display:inline-block;
+  background:var(--accent-gradient);color:#fff;
+  padding:12px 22px;border-radius:10px;font-weight:600;
+  box-shadow:0 4px 12px rgba(11,92,255,0.3);
+  transition:transform .2s ease;
+}
+.hero .cta:hover{transform:translateY(-2px);}
+.hero-highlights{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:40px;
+}
+.highlight-card{
+  background:var(--card);border-radius:var(--radius);padding:20px;text-align:center;
+  box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease;
+}
+.highlight-card:hover{transform:translateY(-4px);box-shadow:0 12px 25px rgba(0,0,0,0.08);}
+.highlight-card h3{color:#0b5cff;margin-bottom:6px;font-size:18px;}
+.highlight-card p{color:#555;font-size:15px;}
+
+/* === Sections === */
+h2.section{
+  font-size:28px;color:#0b5cff;margin-top:60px;margin-bottom:16px;
+  position:relative;display:inline-block;padding-bottom:6px;
+}
+h2.section::after{
+  content:"";position:absolute;bottom:0;left:0;width:60%;height:3px;background:var(--accent-gradient);border-radius:2px;
+}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.card{
+  background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,0.08);}
+.card strong{color:#0b5cff;}
+
+/* === Lists === */
+ul{padding-left:20px;margin:0;}
+ul li{margin-bottom:6px;}
+
+/* === Feedback / Portal === */
+form{display:grid;gap:10px;}
+input,textarea,select,button{
+  padding:10px;border-radius:8px;border:1px solid #ccd3e0;font-family:inherit;
+}
+textarea{min-height:100px;}
+button.cta{
+  background:var(--accent-gradient);color:#fff;font-weight:600;
+  border:none;cursor:pointer;transition:opacity .25s;
+}
+button.cta:hover{opacity:.9;}
+
+/* === Certifications === */
+#certifications .card{
+  display:flex;align-items:center;justify-content:center;
+  color:#666;text-align:center;min-height:120px;border:2px dashed #ccc;
+}
+
+/* === Mobile === */
+.mobile-top-sections,.mobile-sidebar,.mobile-menu-toggle{display:none;}
+
+@media(max-width:768px){
+  .sidebar,header{display:none;}
+  main{margin:0;padding:100px 20px;}
+  .mobile-top-sections{
+    display:flex;flex-wrap:wrap;gap:6px;position:fixed;top:0;left:0;right:0;
+    background:#fff;padding:10px 14px;z-index:900;box-shadow:0 2px 6px rgba(0,0,0,0.05);
+  }
+  .mobile-top-sections a{
+    background:#f1f3f5;padding:8px 12px;border-radius:8px;font-weight:600;font-size:14px;
+  }
+  .mobile-top-sections a.cta{
+    background:var(--accent-gradient);color:#fff;
+  }
+  .mobile-menu-toggle{
+    display:block;position:fixed;top:12px;right:15px;
+    font-size:30px;border:none;background:none;cursor:pointer;z-index:1001;color:#222;
+  }
+  .mobile-sidebar{
+    display:block;position:fixed;top:0;left:-240px;width:240px;height:100%;
+    background:#111;color:#fff;padding:20px;transition:left .3s;z-index:1000;
+  }
+  .mobile-sidebar.show{left:0;}
+  .mobile-sidebar img{width:180px;margin-bottom:10px;}
+}
+
+/* === Animations === */
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="brand"><img src="logo.png" alt="MetLab Logo" class="logo"></div>
+  <div class="contact-info">
+    <p><strong>Contact Person:</strong> Operations Manager</p>
+    <p><strong>Phone:</strong> +974 44XXXXXX</p>
+    <p><strong>Mobile:</strong> +974 XXXXXXXX</p>
+    <p><strong>Email:</strong> Info.Qatar@xxxx.com</p>
+  </div>
+</aside>
+
+<!-- Header -->
+<header>
+  <nav class="navlinks">
+    <a href="#about">About</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#careers">Careers</a>
+    <a href="#feedback">Feedback</a>
+    <a href="#portal" class="cta">Client Portal</a>
+  </nav>
+</header>
+
+<!-- Mobile -->
+<div class="mobile-top-sections">
+  <a href="#about">About</a>
+  <a href="#capabilities">Capabilities</a>
+  <a href="#certifications">Certifications</a>
+  <a href="#careers">Careers</a>
+  <a href="#feedback">Feedback</a>
+  <a href="#portal" class="cta">Portal</a>
+</div>
+<aside class="mobile-sidebar">
+  <img src="logo.png" alt="MetLab Logo">
+  <div class="contact-info">
+    <p><strong>Contact:</strong> Operations Manager</p>
+    <p>Phone: +974 44XXXXXX</p>
+    <p>Email: Info.Qatar@xxxx.com</p>
+  </div>
+</aside>
+<button class="mobile-menu-toggle">&#9776;</button>
+
+<!-- Main -->
+<main>
+  <section class="hero" id="home">
+    <h1>Reliable Mechanical, Metallurgical, Corrosion & Coating Testing</h1>
+    <p>Supporting Qatar’s <strong>oil & gas, marine, rail, and manufacturing</strong> sectors — precision testing, fast turnaround, and accredited results.</p>
+    <a class="cta" href="#capabilities">Explore Testing Capabilities</a>
+    <div class="hero-highlights">
+      <div class="highlight-card"><h3>Accurate Results</h3><p>Advanced equipment ensures repeatable precision.</p></div>
+      <div class="highlight-card"><h3>Client OTP Access</h3><p>Secure, verified report access via portal.</p></div>
+      <div class="highlight-card"><h3>Fast Turnaround</h3><p>Rapid testing and reporting for tight schedules.</p></div>
+      <div class="highlight-card"><h3>Accredited Standards</h3><p>ASTM, ISO, and international specifications.</p></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section">About MetLab</h2>
+    <div class="card">
+      <p><strong>MetLab Testing and Analysis Services</strong> is a Qatari-owned materials testing laboratory specializing in <em>Corrosion, Mechanical, Coating, and Metallurgical</em> analysis.</p>
+      <p>Our work aligns with the <strong>Qatar National Vision 2030</strong>, promoting industrial self-reliance, safety, and sustainability.</p>
+      <p>With <strong>precision, integrity, and technical excellence</strong>, we serve oil & gas, petrochemical, marine, and manufacturing industries.</p>
+    </div>
+  </section>
+
+  <section id="capabilities">
+    <h2 class="section">Testing Capabilities</h2>
+    <div class="cards">
+      <div class="card"><h3>Mechanical Testing</h3><ul><li>Tensile & Bend Testing</li><li>Impact & Fatigue Tests</li><li>Hardness & Compression</li><li>Fracture Toughness</li></ul></div>
+      <div class="card"><h3>Metallurgical Analysis</h3><ul><li>Micro & Macro Examination</li><li>Grain Size Analysis</li><li>Failure & Inclusion Analysis</li><li>SEM/EDS</li></ul></div>
+      <div class="card"><h3>Corrosion Testing</h3><ul><li>Salt Spray & Electrochemical</li><li>Pitting & SCC</li><li>IGC & HIC</li><li>Environmental Simulation</li></ul></div>
+      <div class="card"><h3>Coating Analysis</h3><ul><li>Adhesion & Thickness</li><li>Scratch & Abrasion Tests</li><li>Flexibility & Roughness</li><li>Peel & DSC Testing</li></ul></div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <h2 class="section">Certifications & Approvals</h2>
+    <div class="cards">
+      <div class="card">Certifications coming soon.</div>
+      <div class="card">Client approvals in progress.</div>
+    </div>
+  </section>
+
+  <section id="feedback">
+    <h2 class="section">Customer Feedback</h2>
+    <div class="card">
+      <form id="feedbackForm">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <select name="type" required>
+          <option value="">Select type</option>
+          <option value="feedback">Feedback</option>
+          <option value="enquiry">Enquiry</option>
+          <option value="suggestions">Suggestions</option>
+        </select>
+        <textarea name="message" placeholder="Your message or suggestion" required></textarea>
+        <button type="submit" class="cta">Send Feedback</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="portal">
+    <h2 class="section">Client Report Portal (OTP-secured)</h2>
+    <div class="card">
+      <p class="muted">Enter your report number. You’ll receive an OTP at your registered email. After verification, your PDF report will be downloadable.</p>
+      <form id="portalForm">
+        <input type="text" id="reportNo" placeholder="Report number" required>
+        <button type="button" id="requestOtp" class="cta">Request OTP</button>
+      </form>
+      <p style="font-size:14px;margin-top:8px;color:#666;"><em>Feature under development.</em></p>
+    </div>
+  </section>
+</main>
+
+<script>
+document.getElementById('feedbackForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const name=this.name.value,email=this.email.value,type=this.type.value,msg=this.message.value;
+  const subject=encodeURIComponent(`Customer ${type}: ${name}`);
+  const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\nType: ${type}\nMessage:\n${msg}`);
+  window.location.href=`mailto:info.amsqatar@gmail.com?subject=${subject}&body=${body}`;
+  alert("Email draft opened — please send to submit feedback.");
+  this.reset();
+});
+const sidebar=document.querySelector('.mobile-sidebar');
+const toggle=document.querySelector('.mobile-menu-toggle');
+toggle.addEventListener('click',()=>sidebar.classList.toggle('show'));
+document.addEventListener('click',e=>{
+  if(!sidebar.contains(e.target)&&!toggle.contains(e.target)) sidebar.classList.remove('show');
+});
+</script>
+</body>
+</html>
